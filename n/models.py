@@ -43,9 +43,10 @@ class Ecandidates(models.Model):
     Statename = models.CharField(max_length=30, choices=choice_states,default='')
     partyname = models.CharField(max_length=100,default='')
     Candidate = models.CharField(max_length=100,default='')
-    constituency_name = models.CharField(max_length=100,default='')
+    
     District_name = models.CharField(max_length=100,default='')
     Residence = models.TextField(max_length=200, default='')
+    Photo = models.ImageField(upload_to='photo/', default='')
     
     class Meta:
         abstract=True
@@ -53,34 +54,34 @@ class Ecandidates(models.Model):
         return self.Statename
 
 class BiharCandidate(Ecandidates):
-    Photo = models.ImageField(upload_to='photo/',default='')
+    constituency_name = models.CharField(max_length=100,default='')
     
 
 
 class BiharWinners(Ecandidates):
-    Photo = models.ImageField(upload_to='photo/',default='')
+    constituency_name = models.CharField(max_length=100,default='',unique='True')
     total_contested = models.IntegerField()
     no_of_votes = models.IntegerField()
 
 
 class BiharRunners(Ecandidates):
-    Photo = models.ImageField(upload_to='photo/', default='')
+    constituency_name = models.CharField(max_length=100,default='',unique='True')
     total_contested = models.IntegerField()
     no_of_votes = models.IntegerField()
 
 class DubbakaCandidate(Ecandidates):
-    Photo = models.ImageField(upload_to='photo/', default='')
+    constituency_name = models.CharField(max_length=100,default='')
     
 
 
 class DubbakaWinners(Ecandidates):
-    Photo = models.ImageField(upload_to='photo/', default='')
+    constituency_name = models.CharField(max_length=100,default='',unique='True')
     total_contested = models.IntegerField()
     no_of_votes = models.IntegerField()
 
 
 class DubbakaRunners(Ecandidates):
-    Photo = models.ImageField(upload_to='photo/', default='')
+    constituency_name = models.CharField(max_length=100,default='',unique='True')
     total_contested = models.IntegerField()
     no_of_votes = models.IntegerField()
 
